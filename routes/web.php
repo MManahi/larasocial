@@ -28,5 +28,12 @@ Auth::routes();
 /*
  * profile routes
  */
+Route::resource('profile','ProfileController');
 Route::get('/profile', 'ProfileController@index');
 
+
+
+/*
+ * post routes
+ */
+Route::resource('post','PostController');

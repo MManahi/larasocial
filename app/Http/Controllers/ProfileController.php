@@ -9,7 +9,8 @@ use App\Http\Requests;
 class ProfileController extends Controller
 {
     public function index()
-    {   $user = Auth::user();
+    {
+        $user = Auth::user();
         if ($user) {
             return view('profile.index');
         } else return redirect('/home');
