@@ -16,7 +16,6 @@
  * basic route for home page
  */
 Route::get('/', 'HomeController@index');
-Route::get('/home', 'HomeController@index');
 
 
 /*
@@ -37,3 +36,5 @@ Route::get('/profile', 'ProfileController@index');
  * post routes
  */
 Route::resource('post','PostController');
+
+//Route::get('custom','PostController@custom')->name('custom route');

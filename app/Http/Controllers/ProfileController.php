@@ -10,9 +10,8 @@ class ProfileController extends Controller
 {
     public function index()
     {
-        $user = Auth::user();
-        if ($user) {
+        if (Auth::check()) {
             return view('profile.index');
-        } else return redirect('/home');
+        } else return redirect('/');
     }
 }
