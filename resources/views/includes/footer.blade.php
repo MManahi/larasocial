@@ -1,7 +1,7 @@
 <div class="footer">
 	<div class="container">
 		<h2><a href="index.html">Larasocial</a></h2>
-		<p> A Social Network Built on Laravel 5.3</p>
+		<p>Social Network Built on Laravel 5.3 | Mohammed Manahi</p>
 		<ul>
 			<li><a class="face1" href="#"></a></li>
 			<li><a class="face2"href="#"></a></li>

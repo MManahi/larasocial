@@ -2,26 +2,26 @@
 @section('content')
     <br/><br/>
     <div class='container'>
-        <h1>Show Post</h1>
+        <h1>Show Profile</h1>
         <br>
-        <form method='get' action='{{url("post")}}'>
-            <button class='btn btn-primary'>Posts Index</button>
+        <form method='get' action='{{url("profile")}}'>
+            <button class='btn btn-primary'>My Profile</button>
         </form>
         <br>
         <table class='table table-bordered'>
             <tbody>
             <tr>
                 <td>
-                    <b><i>Title : </i></b>
+                    <b><i>Bio : </i></b>
                 </td>
-                <td>{{$post->post_title}}</td>
+                <td>{{$profile->bio}}</td>
             </tr>
 
             <tr>
                 <td>
-                    <b><i>Content : </i></b>
+                    <b><i>Basic Info : </i></b>
                 </td>
-                <td>{{$post->post_body}}</td>
+                <td>{{$profile->basic_info}}</td>
             </tr>
             </tbody>
         </table>

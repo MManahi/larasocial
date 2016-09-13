@@ -1,39 +1,35 @@
 @extends('master.layout')
 @section('content')
     <br/><br/>
-<div class="row">
-    <div class="col-lg-12 margin-tb">
-        <div class="pull-left">
-            <h2>Posts</h2>
-        </div>
-        <div class="pull-right">
-            <a class="btn btn-success" href="{{ route('post.create') }}"> Create a new post</a>
+    <div class='container'>
+        <h1 style="color: white">Posts Index</h1>
+        <form class='col s3' method='get' action='{{url("post")}}/create'>
+            <button class='btn btn-primary' type='submit'>Create New Post</button>
+        </form>
+        <br>
+
+        <br>
+        @foreach($posts as $Post)
+            <div class="jumbotron">
+                <h4>{{$Post->post_title}}</h4>
+                <p>{{$Post->post_body}}</p>
+                <i>Date: <span>{{date_format($Post->created_at, "Y/m/d")}}</span></i>
+                <br/><hr>
+                <a href="/post/{{$Post->id}}/delete" class='btn btn-danger btn-md'><i>delete</i></a>
+                <a href='{{url('/post/'.$Post->id.'/edit')}}' class=' btn btn-primary btn-md'><i
+                    >edit</i></a>
+                <a href='{{url('/post/'.$Post->id)}}' class=' btn btn-warning btn-md'><i
+                    >info</i></a>
+
+            </div>
+        @endforeach
+    </div>
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class='AjaxisModal'>
         </div>
     </div>
-</div>
-
-@if ($message = Session::get('success'))
-    <div class="alert alert-success">
-        <p>{{ $message }}</p>
-    </div>
-@endif
-
-    @foreach ($posts as $key => $post)
-        <tr>
-            <td>{{ ++$i }}</td>
-            <td>{{ $post->post_title }}</td>
-            <td>{{ $post->post_body }}</td>
-            <td>
-                <a class="btn btn-info" href="{{ route('post.show',$post->id) }}">Show</a>
-                <a class="btn btn-primary" href="{{ route('post.edit',$post->id) }}">Edit</a>
-                {!! Form::open(['method' => 'DELETE','route' => ['post.destroy', $post->id],'style'=>'display:inline']) !!}
-                {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
-                {!! Form::close() !!}
-            </td>
-        </tr>
-    @endforeach
-
-
-{!! $posts->render() !!}
+    <script> var baseURL = "{{URL::to('/')}}"</script>
+    <script src="{{ URL::asset('js/AjaxisBootstrap.js')}}"></script>
+    <script src="{{ URL::asset('js/scaffold-interface-js/customA.js')}}"></script>
     <br/><br/>
 @stop

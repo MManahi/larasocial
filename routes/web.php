@@ -28,13 +28,23 @@ Auth::routes();
  * profile routes
  */
 Route::resource('profile','ProfileController');
-Route::get('/profile', 'ProfileController@index');
-
+Route::post('profile/{id}/update','ProfileController@update');
+Route::get('profile/{id}/delete','ProfileController@destroy');
+Route::get('profile/{id}/deleteMsg','ProfileController@DeleteMsg');
 
 
 /*
  * post routes
  */
 Route::resource('post','PostController');
-
+Route::post('post/{id}/update','PostController@update');
+Route::get('post/{id}/delete','PostController@destroy');
+Route::get('post/{id}/deleteMsg','PostController@DeleteMsg');
 //Route::get('custom','PostController@custom')->name('custom route');
+
+/*
+ * attachments routes
+ */
+
+Route::get('image-upload','AttachmentController@imageUpload');
+Route::post('image-upload','AttachmentController@imageUploadPost');

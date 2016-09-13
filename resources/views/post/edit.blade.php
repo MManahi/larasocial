@@ -1,49 +1,26 @@
 @extends('master.layout')
 @section('content')
-    <div class="row">
-        <div class="col-lg-12 margin-tb">
-            <div class="pull-left">
-                <h2>Edit Post</h2>
-            </div>
-            <div class="pull-right">
-                <a class="btn btn-primary" href="{{ route('post.index') }}"> Back</a>
-            </div>
-        </div>
-    </div>
+    <br/><br/>
+    <div class = 'container'>
+        <h1>Edit Post</h1>
+        <form method = 'get' action = '{{url("post")}}'>
+            <button class = 'btn btn-danger'>Post Index</button>
+        </form>
+        <br>
+        <form method = 'POST' action = '{{url("post")}}/{{$post->id}}/update'>
+            <input type = 'hidden' name = '_token' value = '{{Session::token()}}'>
 
-    @if (count($errors) > 0)
-        <div class="alert alert-danger">
-           There were some problems with your input.<br><br>
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
-
-    {!! Form::model($item, ['method' => 'PATCH','route' => ['post.update', $post->id]]) !!}
-    <div class="row">
-
-        <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>Title:</strong>
-                {!! Form::text('[post_title', null, array('placeholder' => 'Title','class' => 'form-control')) !!}
+                <label for="name">Title</label>
+                <input id="name" name = "post_title" type="text" class="form-control" value="{{$post->name}}">
             </div>
-        </div>
 
-        <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>Description:</strong>
-                {!! Form::textarea('post_body', null, array('placeholder' => 'Description','class' => 'form-control','style'=>'height:100px')) !!}
+                <label for="price">Content</label>
+                <input id="price" name = "post_body" type="text" class="form-control" value="{{$post->price}}">
             </div>
-        </div>
-
-        <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </div>
-
+            <button class = 'btn btn-primary' type ='submit'>Update</button>
+        </form>
     </div>
-    {!! Form::close() !!}
-
-@endsection
+    <br/><br/>
+@stop
