@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Attachment;
 use App\Http\Requests;
 
 class AttachmentController extends Controller
@@ -26,10 +26,7 @@ class AttachmentController extends Controller
 
         $imageName = time() . '.' . $request->image->getClientOriginalExtension();
         $request->image->move(public_path('images'), $imageName);
-
-        return back()
-            ->with('success', 'Image Uploaded successfully.')
-            ->with('path', $imageName);
+        return redirect('post/create')->with('success', 'Image Uploaded successfully.')->with('path', $imageName);
     }
 
 }

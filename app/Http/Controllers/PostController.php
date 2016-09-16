@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Attachment;
 use Illuminate\Http\Request;
 use App\Post;
 use App\User;
@@ -30,10 +31,42 @@ class PostController extends Controller
     public function store(Request $request)
     {
         $post = new Post();
+        $post->user_id = Auth::user()->id;
         $post->post_title = $request->post_title;
         $post->post_body = $request->post_body;
         $post->save();
+
+        if($request->hasFile('image')){
+            $destinationPath = 'public/images';
+            $image = $request->file('image');
+            $extension = $image->getClientOriginalExtension();
+            $fileName = rand(1111111, 99999999) . '.' . $extension;
+            $image->move($destinationPath, $fileName);
+            $image_attach = $destinationPath . '/' . $fileName;
+            $this->Attach($post->id ,'image',$image_attach);
+        }
+
+        if($request->hasFile('video')){
+            $destinationPath = 'public/videos';
+            $image = $request->file('video');
+            $extension = $image->getClientOriginalExtension();
+            $fileName = rand(1111111, 99999999) . '.' . $extension;
+            $image->move($destinationPath, $fileName);
+            $image_attach = $destinationPath . '/' . $fileName;
+            $this->Attach($post->id ,'video',$image_attach);
+        }
+
         return redirect('post');
+    }
+
+    public function Attach($post_id , $type , $image){
+
+        $attachment = new Attachment();
+        $attachment->type = $type;
+        $attachment->post_id = $post_id;
+        $attachment->attach_title = '';
+        $attachment->path = $image;
+        $attachment->save();
     }
 
     public function show($id, Request $request)

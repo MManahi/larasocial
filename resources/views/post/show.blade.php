@@ -23,6 +23,25 @@
                 </td>
                 <td>{{$post->post_body}}</td>
             </tr>
+            <tr>
+                <td>
+                    <b><i>Attachment : </i></b>
+                </td>
+                <td>
+                    @if(isset($post->attachment->path))
+
+                        @if($post->attachment->type =='image')
+                            <img width="300" height="300"  class="img-responsive" src="{{url($post->attachment->path)}}">
+                        @else
+                            <video width="400" controls>
+                                <source src="{{url($post->attachment->path)}}" type="video/mp4">
+                                Your browser does not support HTML5 video.
+                            </video>
+                        @endif
+
+                    @endif
+                </td>
+            </tr>
             </tbody>
         </table>
     </div>
