@@ -2,10 +2,10 @@
 @section('content')
     <br/><br/>
     <div class='container'>
-        <h1>Create New Post</h1> <br/>
+        <h1>New Post</h1> <br/>
         <form method='get' action='{{url("post")}}'>
             <input type='hidden' name='_token' value='{{Session::token()}}'>
-            <button class='btn btn-danger' style="color: white">Post Index</button>
+            <button class='btn btn-danger' style="color: white">Timeline</button>
         </form>
         <br>
         <form method='POST' enctype="multipart/form-data" action='{{url("post")}}'>

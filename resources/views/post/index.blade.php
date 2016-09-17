@@ -2,7 +2,7 @@
 @section('content')
     <br/><br/>
     <div class='container'>
-        <h1 style="color: white">Posts Index</h1>
+        <h1 style="color: white">Timeline</h1>
         <form class='col s3' method='get' action='{{url("post")}}/create'>
             <button class='btn btn-primary' type='submit'>Create New Post</button>
         </form>

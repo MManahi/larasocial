@@ -2,9 +2,9 @@
 @section('content')
     <br/><br/>
     <div class = 'container'>
-        <h1>Edit Post</h1>
+        <h3>Edit Post</h3>
         <form method = 'get' action = '{{url("post")}}'>
-            <button class = 'btn btn-danger'>Post Index</button>
+            <button class = 'btn btn-danger'>Timeline</button>
         </form>
         <br>
         <form method = 'POST' action = '{{url("post")}}/{{$post->id}}/update'>
